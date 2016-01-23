@@ -1,0 +1,19 @@
+<div>
+    <div class="list_head" ng-init="list_list=true">
+        <a href="#" ng-click="galery_list = true; list_list=false" ng-class="{active_list:galery_list}" class="galery_list">Галерея</a><a ng-click="list_list = true; galery_list=false" ng-class="{active_list:list_list}" href="#" class="list_list">Список</a>
+    </div>
+    <div class="list_body" ng-if="list_list">
+        <ul>
+            <li ng-repeat="actor in actors.actors | orderBy:'-VideoCount' | limitTo:80"><a ng-href="/actor/{{actor.Id}}">{{actor.Name}} <span>({{actor.VideoCount}} video)</span></a></li>
+        </ul>
+    </div>
+
+    <div class="list_body galery_body" ng-if="galery_list">
+                  <a ng-repeat="actor in actors.actors | orderBy:'-VideoCount' | limitTo:80" ng-href="/actor/{{actor.Id}}" class="actor">
+                        <div class="actor_foto">
+                              <img ng-src="{{actor.PictureId | hublerPicture:121}}" alt="">
+                        </div>
+                        <p>{{actor.Name}}<span> {{actor.VideoCount}} Videos</span></p>
+                    </a>
+                  </div>    
+</div>

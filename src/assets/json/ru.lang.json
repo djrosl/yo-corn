@@ -1,0 +1,40 @@
+{
+	"search_button":"Поиск",
+	"add_video_button":"Добавить видео",
+	"login":"Вход",
+	"register":"Регистрация",
+	"categories":"Категории",
+	"actors":"Актеры",
+	"studios":"Студии",
+	"my_playlist":"Мой плейлист",
+	"by_time":"По времени",
+	"sort_by":"Сортировать по",
+	"by_time_options": [
+		{
+			"title":"До 10 минут",
+			"value":"0,10"
+		},
+		{
+			"title":"От 10 до 30 минут",
+			"value":"10,30"
+		},
+		{
+			"title":"Больше 30 минут",
+			"value":"30,0"
+		}
+	],
+	"sort_by_options": [
+		{
+			"title":"Самые просматриваемые",
+			"value":"view"
+		},
+		{
+			"title":"Самые новые",
+			"value":"date"
+		},
+		{
+			"title":"Самые понравившиеся",
+			"value":"like"
+		}
+	]
+}

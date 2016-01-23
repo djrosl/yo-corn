@@ -1,0 +1,283 @@
+<!doctype html>
+<html ng-app="yoCorn">
+
+<head>
+    <meta charset="utf-8">
+    <title>PORNCORN</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <base href="/">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- run `gulp inject` to automatically populate bower styles dependencies -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css({.tmp/serve,src}) styles/app.css -->
+    <!-- inject:css -->
+    <!-- css files will be automatically insert here -->
+    <!-- endinject -->
+    <!-- endbuild -->
+    <!--[if lte IE 9]><link href="css/ie9.css" rel="stylesheet" type="text/css" /><![endif]-->
+</head>
+
+<body>
+    <div id="slideout" ng-if="slideout">
+        <span class="top_banner_button"></span>
+        <div id="slideout_inner">
+            <span class="top_banner_button2"></span>
+            <div class="banner_cont"><a href="#"><img src="/assets/img/one_item/banner_small.jpg" alt=""></a><br><a href="#"><img src="/assets/img/one_item/banner_small.jpg" alt=""></a></div>
+        </div>
+    </div>
+    <!--[if lt IE 10]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div class="overlay4" ng-if="prompt"></div>
+    <div class="popup4" ng-if="prompt">
+        <div class="pop4">
+            <a href="#" class="logo"><img src="assets/img/logo.jpg" alt="" /></a>
+            <span>Данный сайт предназначен для, лиц<br> достигших совершеннолетия</span>
+            <div class="buttons">
+                <button class="close add_video" ng-click="removePrompt()">Мне больше <span>18</span> лет</button><a href="https://www.google.com.ua/?gfe_rd=cr&ei=toWCVqexHsacwwOWrqTwAw" class="not_ready">Мне ещё нет <span>18</span> лет</a>
+            </div>
+        </div>
+    </div>
+    <!-- HEADER START -->
+    <div class="wraper" ng-class="{'blurred':prompt}">
+        <div class="header-wrapper" ng-controller="HeaderController as header">
+            <div class="header">
+                <div>
+                    <div class="top">
+                        <a href="/" class="logo"><img src="assets/img/logo.jpg" alt="" /></a>
+                        <div class="wrap_search">
+                            <button id="pull" class="lupa"><img src="assets/img/lupa.png" alt="" /></button>
+                            <div>
+                                <button class="lupa"><img src="assets/img/lupa.png" alt="" /></button>
+                                <input class="input_one" type="search" />
+                                <input type="submit" class="search" value="найти">
+                            </div>
+                        </div>
+                        <a href="#" class="add_video open_window5">Добавить видео</a>
+                        <div class="wrap_registration">
+                            <a href="#" class="enter open_window7">Вход</a>
+                            <a href="#" class="registration open_window6">Регистрация</a>
+                            <div class="lang">
+                                <div class="lang_selected">
+                                    <img ng-src="{{header.languages[language].picture}}" alt="">
+                                </div>
+                                <div class="hidden_lang">
+                                    <a href="#" ng-click="header.changeLanguage(lang.id)" ng-repeat="lang in header.languages | orderBy:'id'"><img ng-src="{{lang.picture}}" alt=""></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="nav">
+                <div>
+                    <div class="wrap_menu">
+                        <button id="pull2"><img src="assets/img/menu.png" alt=""></button>
+                        <ul class="menu">
+                            <li><a href="/categories" class="menu_category">категории</a>
+                                <ul class="sub_menu sub_menu_mobile">
+                                    <li class="all_categorys"><a>ВСЕ КАТЕГОРИИ</a></li>
+                                    <li ng-repeat="category in categories | orderBy:'+Name'"><a href="/category/{{category.Id}}">{{category.Name}}</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/actors">актеры</a></li>
+                            <li><a href="#">Студии</a></li>
+                            <li class="playlist"><a href="#">мой плейлист</a></li>
+                        </ul>
+                        <ul class="menu_mobile">
+                            <li><a href="#">мой плейлист</a></li>
+                            <li><a href="/actors">актеры</a></li>
+                            <li><a href="#">Студии</a></li>
+                            <li><a href="#" class="menu_category">категории</a>
+                                <ul class="sub_menu_mobile">
+                                    <li><a href="#">All Categories</a></li>
+                                    <li ng-repeat="category in categories | orderBy:'+Name' | limitTo:20"><a href="#">{{category.Name}}<span>({{category.VideoCount}})</span></a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="wrap_registration">
+                        <a href="#" class="enter">Вход</a>
+                        <a href="#" class="registration">Регистрация</a>
+                    </div>
+                </div>
+            </div>
+            <div class="sort" ng-if="config.show_controls">
+                <div>
+                    <div class="sort_time">
+                        <span>По времени:</span>
+                        <div class="styled-select">
+                            <section id="basic-usage">
+                                <select class="select" fancyselect sort-name="duration">
+                                    <option value="0,600">До 10 минут</option>
+                                    <option value="600,1800">От 10 до 30 минут</option>
+                                    <option value="1800,0">Больше 30 минут</option>
+                                </select>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="sort_popular">
+                        <span>Сортировать по:</span>
+                        <div class="styled-select">
+                            <section id="basic-usage">
+                                <select class="select" fancyselect sort-name="params">
+                                    <option value="view">Самые просматриваемые</option>
+                                    <option value="date">Самые новые</option>
+                                    <option value="like">Самые понравившиеся</option>
+                                </select>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide_wrap" ng-if="config.show_slider.Value | number">
+                <div id="sliderOuter">
+                    <div class="slider" mobilyslider>
+                        <div class="sliderContent">
+                            
+                            <div class="item" ng-repeat="slide in header.promos">
+                                <img ng-src="{{slide.picture}}" alt="">
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- HEADER CTRL END -->
+
+        <!-- //HEADER END -->
+
+        <div class="content-wrapper">
+            <div ui-view ng-cloak></div>
+
+            <div id="upBlock" ng-show="loading"><img src="assets/img/see_more.png" /></div>
+        </div>
+        
+        <!-- FOOTER START -->
+        <div class="footer">
+            <div>
+                <div class="bottom">
+                </div>
+                <div class="footer_hidden">
+                    <ul class="nav_footer">
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Privacy policy</a></li>
+                        <li><a href="#">Parental protection</a></li>
+                        <li><a href="#">For advertisers</a></li>
+                        <li><a href="#">For webmasters</a></li>
+                        <li><a href="#">Contact & Feedback</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                    <div class="copy">
+                        <p>© www site 2015</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="overlay5">
+    </div>
+    <div class="popup5">
+        <div class="pop5">
+            <span>Видео <a href="#">playbeutifulxxx</a><br/> добавленно в ваш плейлист</span>
+            <div class="close_window5"><a href="#">ОК</a> </div>
+        </div>
+    </div>
+    <div class="overlay6">
+    </div>
+    <div class="popup6">
+        <div class="close_window6">
+            <img src="assets/img/categories/cl.png" alt="" />
+        </div>
+        <div class="pop6">
+            <h3>Регистрация</h3>
+            <div class="wrap_pop6">
+                <div class="left_pop6">
+                    <p>Введите ваш nickname</p>
+                    <input type="tel" class="input_s" placeholder="ivanov667">
+                    <p>Введите ваш email</p>
+                    <input type="tel" class="input_s" placeholder="ivanov667@.gmail.com">
+                    <p>Введите ваш пароль</p>
+                    <input type="tel" class="input_s" placeholder="qwerty123456">
+                    <p>Подтвердите пароль</p>
+                    <input type="tel" class="input_s" placeholder="qwerty123456">
+                    <a href="#">Регистрация</a>
+                </div>
+                <div class="right_pop6">
+                    <span>
+                    <p>Вы так же можете
+    зарегистрироваться через
+    социальную сеть:</p>
+                    <div class="soc_icon">
+                        <a href="#"><img src="assets/img/categories/s1.png" alt="" /></a>
+                        <a href="#"><img src="assets/img/categories/s2.png" alt="" /></a>
+                        <a href="#"><img src="assets/img/categories/s3.png" alt="" /></a>
+                    </div>
+                </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="overlay7">
+    </div>
+    <div class="popup7">
+        <div class="close_window7">
+            <img src="assets/img/categories/cl.png" alt="" />
+        </div>
+        <div class="pop6">
+            <h3>Вход</h3>
+            <div class="wrap_pop6">
+                <div class="left_pop6">
+                    <p>Введите ваш nickname</p>
+                    <input type="tel" class="input_s" placeholder="ivanov667">
+                    <p>Введите ваш email</p>
+                    <input type="tel" class="input_s" placeholder="ivanov667@.gmail.com">
+                    <div class="top_enter7">
+                        <input type="checkbox" id="c1" name="qq" />
+                        <label for="c1"><span></span>
+                            <p>Запомнить меня</p>
+                        </label>
+                        <a href="#">Напомнить пароль</a>
+                    </div>
+                    <a href="#">ВХОД</a>
+                </div>
+                <div class="right_pop6 right_pop7">
+                    <span>
+                    <p>Вы так же можете
+войти через
+социальную сеть:</p>
+                    <div class="soc_icon">
+                        <a href="#"><img src="assets/img/categories/s1.png" alt="" /></a>
+                        <a href="#"><img src="assets/img/categories/s2.png" alt="" /></a>
+                        <a href="#"><img src="assets/img/categories/s3.png" alt="" /></a>
+                    </div>
+                </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //FOOTER END -->
+
+    
+
+    <!-- build:js(src) scripts/vendor.js -->
+    <!-- bower:js -->
+    <!-- run `gulp inject` to automatically populate bower script dependencies -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
+    <!-- inject:js -->
+    <!-- js files will be automatically insert here -->
+    <!-- endinject -->
+    <!-- inject:partials -->
+    <!-- angular templates will be automatically converted in js and inserted here -->
+    <!-- endinject -->
+    <!-- endbuild -->
+</body>
+
+</html>

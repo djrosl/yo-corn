@@ -1,0 +1,105 @@
+<div class="content">
+    <div>
+        <div class="one_items">
+            <div class="one_items_video">
+                    <videogular vg-theme="video.config.theme.url">
+                      <vg-media vg-src="video.currentQualitySource.sources" vg-dash>
+                      </vg-media>
+
+                      <vg-controls vg-autohide="video.config.plugins.controls.autoHide" vg-autohide-time="video.config.plugins.controls.autoHideTime">
+                        <vg-play-pause-button></vg-play-pause-button>
+                        <vg-time-display>{{ currentTime | date:'mm:ss' }}</vg-time-display>
+                        <vg-scrub-bar>
+                            <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                        </vg-scrub-bar>
+                        <vg-time-display>{{ timeLeft | date:'mm:ss' }}</vg-time-display>
+                        <vg-time-display>{{ totalTime | date:'mm:ss' }}</vg-time-display>
+                        <vg-volume>
+                            <vg-mute-button></vg-mute-button>
+                            <vg-volume-bar></vg-volume-bar>
+                        </vg-volume>
+                        <vg-quality quality-sources="video.config.qualitySources" default-quality="video.currentQualitySource"></vg-quality>
+                        <vg-playback-button></vg-playback-button>
+                        <vg-fullscreen-button></vg-fullscreen-button>
+                      </vg-controls>
+                    </videogular>
+            </div>
+            <a href="#" class="one_items_ban">
+                <img src="/assets/img/one_item/banner.jpg" alt="">
+            </a>
+        </div>
+        <div class="one_item">
+            <div class="one_profil">
+                <div class="one_profil_l">
+                    <div class="one_profil_foto">
+                        <img ng-src="{{video.owner.PictureId | hublerPicture:102}}" alt="">
+                    </div>
+                    <div class="one_profil_name">
+                        <p ng-bind-html="video.videoData.CreatedByNickName"></p>
+                    </div>
+                    <div class="one_profil_name one_profil_videoname">
+                        <p ng-bind-html="video.videoData.Description | cut:false:120"></p>
+                    </div>
+                </div>
+                <div class="one_profil_r">
+                    <a href="#" class="st_sharethis_custom"></a>
+                </div>
+            </div>
+            <div class="one_info">
+                <div class="like">
+                    <span class="like_span">{{video.videoData.LikesCount}}</span>
+                    <span class="unlike_span">{{video.videoData.DislikesCount}}</span>
+                    <span class="view">{{video.videoData.Views}}</span>
+                </div>
+                <a href="#" class="add_video">Добавить в плейлист</a>
+            </div>
+            <div class="one_filtr">
+                <p><span class="name_tags">Категории:</span><a href="/category/{{category.Id}}" ng-repeat="category in video.videoData.Categories" class="tag">{{category.Name}}</a></p>
+                <p><span class="name_tags">Актеры:</span><a href="/actor/{{actor.Id}}" ng-repeat="actor in video.videoData.Actors" class="tag">{{actor.Name}}</a></p>
+                <div class="describe">
+                    <p><span class="name_tags">Описание:</span><span class="show_describe"></span></p>
+                    <div class="describe_hidden">
+                        <p ng-bind-html="video.videoData.Description"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="more_videos">
+            <h2>Похожие видео:</h2>
+            <div class="more_videos_wrap">
+                <div ng-repeat="relate in video.related" class="more_video item">
+                    <a href="/video/{{relate.Id}}">
+                        <img ng-src="{{relate.PictureId | hublerPicture:110}}" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="one_comments">
+            <div class="comments_head">
+                <h3>Комментарии пользователей<a href="#" class="add_video">Комментировать видео</a><span class="repost">{{video.videoData.CommentsCount}}</span></h3>
+            </div>
+
+            <div class="comment_block" ng-repeat="comment in video.comments">
+                <div class="comment_block_head">
+                    <div class="comment_block_foto">
+                    </div>
+                    <span class="comm_name">Arseny Smirniakov</span>
+                    <span class="comm_date">10 месяцев назад</span>
+                </div>
+                <div class="comment_text">
+                    <p>Россия ожидает погашения государственного долга украинской стороной полностью и в срок. В заявлении российского правительства Киеву предлагается заплатить немедленно, чтобы избежать дефолта по ...</p>
+                    <div class="hidden_text">
+                        <p> Ожидает погашения государственного долга украинской стороной полностью и в срок.</p>
+                    </div>
+                    <span class="open_text">Читать полностью</span>
+                </div>
+            </div>
+            
+            <div class="more_komment">
+                <button>Загрузить ещё</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script> 
+    <script type="text/javascript"> stLight.options(); </script > -->

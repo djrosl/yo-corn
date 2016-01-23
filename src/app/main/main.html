@@ -1,0 +1,33 @@
+<div class="videos" infinite-scroll="main.infinite()" infinite-scroll-distance="1" infinite-scroll-disabled="">
+    <div>
+        <div class="videos_wrap" id="container">
+            
+            <a ng-repeat="video in main.videos" href="/video/{{video.id}}" ng-class="{'video2':video.isAdvert}" class="video">
+                
+                <div class="video_item" ng-if="!video.isAdvert">
+                    <span class="time_video">{{video.duration | toTime}}</span>
+                    <img ng-src="{{video.picture}}" alt="">
+               </div>
+                <div class="like" ng-if="!video.isAdvert">
+                    <span class="like_span">{{video.likes}}</span>
+                    <span class="unlike_span">{{video.dislikes}}</span>
+                </div>
+                <div class="text" ng-if="!video.isAdvert">
+                    <p ng-bind="video.header | cut:false:60"></p>
+                </div>
+                <div class="feedback" ng-if="!video.isAdvert">
+                    <span class="view">{{video.views}}</span>
+                    <span class="repost">{{video.comments}}</span>
+                </div>
+
+                <span class="ad" ng-if="video.isAdvert">
+                    {{video.header}}
+                </span>
+                <div class="video_item2" ng-if="video.isAdvert">
+                    <img ng-src="{{video.picture}}" alt="">
+                </div>
+            </a>
+        </div>
+        <div id="LoadDiv"></div>
+    </div>
+</div>

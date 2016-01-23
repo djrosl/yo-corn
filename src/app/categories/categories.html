@@ -1,0 +1,16 @@
+<br>
+<br>
+<br>
+<div>
+    <div class="wrap_categories">
+
+        <div class="categories_one" ng-repeat="category in categories">
+            <a ng-href="/category/{{category.Id}}"><img ng-src="{{category.PictureId | hublerPicture:130}}" alt="" /></a>
+            <div class="categories_title">
+                <a ng-href="/category/{{category.Id}}">{{category.Name}}</a>
+                <span>{{category.VideoCount}} Videos</span>
+            </div>
+        </div>
+        
+    </div>
+</div>

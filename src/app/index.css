@@ -1,0 +1,58 @@
+#sliderOuter {
+	width: 80%;
+}
+a.video2:hover {
+    /* margin-right: 0; */
+    /* padding: 19px 0 41px; */
+    /* margin-top: -15px; */
+    margin: 0 20px 19px 0;
+    padding: 4px 0 20px;
+    box-shadow: none;
+    width: 220px;
+}
+.st_sharethis_custom {
+	background: url(/assets/img/one_item/ico.png) center center / 20px no-repeat;
+    height: 30px;
+}
+.wraper #upBlock {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+}
+.wraper #upBlock {
+    display: block;
+}
+
+.videogular-container {
+    width: 100%;
+    height: 320px;
+    margin: auto;
+    overflow: hidden;
+}
+ 
+@media (min-width: 1200px) {
+    .videogular-container {
+        width: 1170px;
+        height: 658.125px;
+    }
+}
+ 
+@media (min-width: 992px) and (max-width: 1199px) {
+    .videogular-container {
+        width: 940px;
+        height: 528.75px;
+    }
+}
+ 
+@media (min-width: 768px) and (max-width: 991px) {
+    .videogular-container {
+        width: 728px;
+        height: 409.5px;
+    }
+}
+.wrap_error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
