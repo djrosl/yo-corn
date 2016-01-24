@@ -29,4 +29,4 @@ angular.module 'yoCorn'
         controllerAs: 'error'
 
     $urlRouterProvider.otherwise '/404'
-    $locationProvider.html5Mode(false)
+    $locationProvider.html5Mode(true)
