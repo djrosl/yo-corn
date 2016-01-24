@@ -11,7 +11,7 @@
     <div class="list_body galery_body" ng-if="galery_list">
                   <a ng-repeat="actor in actors.actors | orderBy:'-VideoCount' | limitTo:80" ng-href="/actor/{{actor.Id}}" class="actor">
                         <div class="actor_foto">
-                              <img ng-src="{{actor.PictureId | hublerPicture:121}}" alt="">
+                              <img ng-src="{{actor.PictureId | hublerPicture:140}}" alt="">
                         </div>
                         <p>{{actor.Name}}<span> {{actor.VideoCount}} Videos</span></p>
                     </a>
